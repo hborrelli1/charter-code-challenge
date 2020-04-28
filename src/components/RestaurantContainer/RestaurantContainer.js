@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Restaurant from '../Restaurant/Restaurant'
+import './RestaurantContainer.css'
 
 const RestaurantContainer = ({ restaurants }) => {
   let restaurantsDisplay;
@@ -15,9 +16,11 @@ const RestaurantContainer = ({ restaurants }) => {
     : restaurantsDisplay = <p>No resturants to display.</p>;
 
   return (
-    <div>
+    <div className="restaurants-container">
       <h2>Restaurants</h2>
-      {restaurantsDisplay}
+      <div className="restuarants-list">
+        {restaurantsDisplay}
+      </div>
     </div>
   )
 }
