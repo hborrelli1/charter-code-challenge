@@ -1,0 +1,13 @@
+.restaurants-container {
+  padding:30px;
+}
+
+.restaurants-container h2 {
+  margin-bottom:20px;
+}
+
+.restaurants-container .restuarants-list {
+  display: flex;
+  flex-flow:wrap;
+  
+}

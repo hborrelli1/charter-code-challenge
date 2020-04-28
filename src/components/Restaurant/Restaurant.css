@@ -1,0 +1,11 @@
+.restaurant {
+  width:32%;
+  padding:20px;
+  background-color:#f1f1f1;
+  margin-right:2%;
+  margin-bottom:2%;
+}
+
+.restaurant:nth-child(3n) {
+  margin-right:0;
+}
