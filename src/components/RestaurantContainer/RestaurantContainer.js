@@ -4,12 +4,16 @@ import Restaurant from '../Restaurant/Restaurant'
 import FilterBar from '../FilterBar/FilterBar'
 import './RestaurantContainer.css'
 
-const RestaurantContainer = ({ restaurants, filterByState, statesFilter }) => {
+const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFilter }) => {
   let restaurantsDisplay;
   let results = restaurants;
 
   if (statesFilter !== 'all') {
     results = results.filter(restaurant => restaurant.state === statesFilter);
+  }
+
+  if (genreFilter !== 'all') {
+    results = results.filter(restaurant => restaurant.genre.includes(genreFilter))
   }
 
   let restaurantsSorted = results.sort((a, b) => {
@@ -26,7 +30,7 @@ const RestaurantContainer = ({ restaurants, filterByState, statesFilter }) => {
     <div className="restaurants-container">
       <FilterBar
         restaurants={restaurants}
-        filterByState={filterByState}
+        filterResults={filterResults}
       />
       <div className="restuarants-list">
         {restaurantsDisplay}

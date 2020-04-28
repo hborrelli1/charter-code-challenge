@@ -9,17 +9,25 @@ class App extends React.Component {
     this.state = {
       restaurants: [],
       statesFilter: 'all',
-      searchGenre: 'all'
+      genreFilter: 'all'
     }
   }
 
   componentDidMount = () => {
     apiFetchData()
-      .then(data => this.setState({ restaurants: data }))
+      .then(data => {
+         let updatedData = data.map(rest => {
+           rest.genre = rest.genre.split(',')
+           return rest;
+         })
+         return updatedData;
+      })
+      .then(updatedData => this.setState({ restaurants: updatedData }))
   }
 
-  filterByState = (stateValue) => {
-    this.setState({ statesFilter: stateValue })
+  filterResults = (target) => {
+    console.log(target.name);
+    this.setState({ [target.name]: target.value })
   }
 
   render() {
@@ -30,8 +38,9 @@ class App extends React.Component {
         </header>
         <RestaurantContainer
           restaurants={this.state.restaurants}
-          filterByState={this.filterByState}
+          filterResults={this.filterResults}
           statesFilter={this.state.statesFilter}
+          genreFilter={this.state.genreFilter}
         />
       </main>
     );
