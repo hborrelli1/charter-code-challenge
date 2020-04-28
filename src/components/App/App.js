@@ -7,13 +7,19 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      restaurants: []
+      restaurants: [],
+      statesFilter: 'all',
+      searchGenre: 'all'
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     apiFetchData()
       .then(data => this.setState({ restaurants: data }))
+  }
+
+  filterByState = (stateValue) => {
+    this.setState({ statesFilter: stateValue })
   }
 
   render() {
@@ -24,6 +30,8 @@ class App extends React.Component {
         </header>
         <RestaurantContainer
           restaurants={this.state.restaurants}
+          filterByState={this.filterByState}
+          statesFilter={this.state.statesFilter}
         />
       </main>
     );
