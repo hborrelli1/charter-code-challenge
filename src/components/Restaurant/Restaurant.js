@@ -7,12 +7,12 @@ const Restaurant = ({ info }) => {
   let genres = genre.join(', ')
 
   return (
-    <div className="restaurant">
-      <h3>{name}</h3>
-      <p>Location: {city}, {state}</p>
-      <p>Phone: <a href={`tel:${telephone}`}>{telephone}</a></p>
-      <p>Genres: {genres}</p>
-    </div>
+    <tr>
+      <td>{name}</td>
+      <td>{city}, {state}</td>
+      <td><a href={`tel:${telephone}`}>{telephone}</a></td>
+      <td>{genres}</td>
+    </tr>
   )
 }
 

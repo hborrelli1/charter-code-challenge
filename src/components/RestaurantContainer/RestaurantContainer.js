@@ -33,7 +33,16 @@ const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFi
         filterResults={filterResults}
       />
       <div className="restuarants-list">
+      <table>
+        <colgroup span="4"></colgroup>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Telephone</th>
+          <th>Genres</th>
+        </tr>
         {restaurantsDisplay}
+      </table>
       </div>
     </div>
   )
