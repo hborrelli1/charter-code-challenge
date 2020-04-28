@@ -34,14 +34,17 @@ const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFi
       />
       <div className="restuarants-list">
       <table>
-        <colgroup span="4"></colgroup>
-        <tr>
-          <th>Name</th>
-          <th>Location</th>
-          <th>Telephone</th>
-          <th>Genres</th>
-        </tr>
-        {restaurantsDisplay}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th className="phone">Telephone</th>
+            <th>Genres</th>
+          </tr>
+        </thead>
+        <tbody>
+          {restaurantsDisplay}
+        </tbody>
       </table>
       </div>
     </div>
