@@ -1,3 +1,13 @@
+main {
+  position:relative;
+  height:100vh;
+}
+
+main.noscroll {
+  overflow:hidden;
+
+}
+
 header {
   text-align:center;
   background-color:#313131;

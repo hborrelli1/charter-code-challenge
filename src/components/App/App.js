@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RestaurantContainer from '../RestaurantContainer/RestaurantContainer';
+import RestaurantDetails from '../RestaurantDetails/RestaurantDetails';
 import { apiFetchData } from '../../apiCalls/apiCalls';
 import './App.css';
 
@@ -11,6 +12,7 @@ class App extends React.Component {
       statesFilter: 'all',
       genreFilter: 'all',
       searchQuery: '',
+      showDetails: ''
     }
   }
 
@@ -31,9 +33,22 @@ class App extends React.Component {
     this.setState({ [target.name]: target.value })
   }
 
+  displayDetails = (id) => {
+    this.setState({ showDetails: id });
+  }
+
+  removeDetails = () => {
+    this.setState({ showDetails: '' });
+  }
+
   render() {
+    const { showDetails, restaurants } = this.state;
+    const restaurantDetailsClass = showDetails ? 'js-details-open' : '';
+    const restaurantDetailsInfo = showDetails ? restaurants.find(rest => rest.id === showDetails) : {};
+    const bodyClass = showDetails ? 'noscroll' : ''
+
     return (
-      <main>
+      <main className={bodyClass}>
         <header>
           <h1>Restaurant Data</h1>
         </header>
@@ -43,7 +58,14 @@ class App extends React.Component {
           statesFilter={this.state.statesFilter}
           genreFilter={this.state.genreFilter}
           searchQuery={this.state.searchQuery}
+          displayDetails={this.displayDetails}
         />
+        <div className={"restaurant-details " + restaurantDetailsClass}>
+          <RestaurantDetails
+            restaurantInfo={restaurantDetailsInfo}
+            removeDetails={this.removeDetails}
+          />
+        </div>
       </main>
     );
   }
