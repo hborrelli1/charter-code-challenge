@@ -44,7 +44,9 @@ class App extends Component {
   render() {
     const { showDetails, restaurants } = this.state;
     const restaurantDetailsClass = showDetails ? 'js-details-open' : '';
-    const restaurantDetailsInfo = showDetails ? restaurants.find(rest => rest.id === showDetails) : {};
+    const restaurantDetailsInfo = showDetails
+      ? restaurants.find(rest => rest.id === showDetails)
+      : {};
     const bodyClass = showDetails ? 'noscroll' : ''
 
     return (

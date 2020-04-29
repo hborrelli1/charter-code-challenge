@@ -38,12 +38,15 @@ class FilterBar extends React.Component {
       return genres;
     },[]).sort();
 
-    let stateOptions = states.map(state => <option key={states.indexOf(state)} value={`${state}`}>{state}</option>);
-    let genreOptions = genres.map(genre => <option key={genres.indexOf(genre)} value={`${genre}`}>{genre}</option>);
+    let stateOptions = states.map(state => (
+      <option key={states.indexOf(state)} value={`${state}`}>{state}</option>)
+    );
+    let genreOptions = genres.map(genre => (
+      <option key={genres.indexOf(genre)} value={`${genre}`}>{genre}</option>)
+    );
 
     return (
       <div className="filter-bar">
-
         <form className="filters">
           <div className="form-group">
             <label htmlFor="state">State:</label>
@@ -80,7 +83,6 @@ class FilterBar extends React.Component {
               onChange={this.handleChange}
               placeholder="Search..."
             />
-
           </div>
         </form>
       </div>

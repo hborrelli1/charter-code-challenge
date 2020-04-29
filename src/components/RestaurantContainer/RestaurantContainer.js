@@ -4,7 +4,15 @@ import Restaurant from '../Restaurant/Restaurant'
 import FilterBar from '../FilterBar/FilterBar'
 import './RestaurantContainer.css'
 
-const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFilter, searchQuery, displayDetails, removeDetails }) => {
+const RestaurantContainer = ({
+    restaurants,
+    filterResults,
+    statesFilter,
+    genreFilter,
+    searchQuery,
+    displayDetails,
+    removeDetails
+  }) => {
   let restaurantsDisplay;
   let searchRegex;
   let results = restaurants;
@@ -20,7 +28,11 @@ const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFi
   if (searchQuery !== '') {
     searchRegex = new RegExp(searchQuery, 'i');
     results = results.filter(restaurant => {
-      return (restaurant.name.match(searchRegex) || restaurant.state.match(searchRegex) || restaurant.city.match(searchRegex) || restaurant.genre.includes(searchRegex));
+      return (restaurant.name.match(searchRegex)
+              || restaurant.state.match(searchRegex)
+              || restaurant.city.match(searchRegex)
+              || restaurant.genre.includes(searchRegex)
+            );
     })
   }
 
