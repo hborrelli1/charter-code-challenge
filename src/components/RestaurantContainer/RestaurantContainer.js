@@ -32,7 +32,7 @@ const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFi
 
   results.length
     ? restaurantsDisplay = restaurantsSorted.map(restInfo => <Restaurant key={restInfo.id} info={restInfo} />)
-    : restaurantsDisplay = <tr><td colspan="4" className="no-results">No resturants to display.</td></tr>;
+    : restaurantsDisplay = <tr><td colSpan="4" className="no-results">No resturants to display.</td></tr>;
 
   return (
     <div className="restaurants-container">

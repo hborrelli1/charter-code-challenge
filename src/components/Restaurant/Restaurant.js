@@ -4,14 +4,14 @@ import './Restaurant.css'
 
 const Restaurant = ({ info }) => {
   const { name, city, state, telephone, genre } = info;
-  let genres = genre.join(', ')
+  let genresDisplay = genre.join(', ')
 
   return (
     <tr>
       <td>{name}</td>
       <td>{city}, {state}</td>
       <td>{telephone}</td>
-      <td>{genres}</td>
+      <td>{genresDisplay}</td>
     </tr>
   )
 }
