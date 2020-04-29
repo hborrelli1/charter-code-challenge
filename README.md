@@ -1,6 +1,6 @@
 ## Charter Spectrum Code Challenge
-Position: Full Stack (ReactJS/Gatsby) @ Charter
-Completed by: Harry Borrelli
+**Position:** Full Stack (ReactJS/Gatsby) @ Charter   
+**Completed by:** Harry Borrelli
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
