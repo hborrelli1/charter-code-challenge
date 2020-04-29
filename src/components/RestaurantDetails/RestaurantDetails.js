@@ -37,7 +37,7 @@ const RestaurantDetails = ({ restaurantInfo, removeDetails }) => {
           {city}, {state} | {zip}<br/>
           </address>
           <h3>Contact:</h3>
-          <p><strong>Telephone:</strong> {telephone}</p>
+          <p><strong>Telephone:</strong> <a href={"tel:" + telephone}>{telephone}</a></p>
           <p><strong>Webiste:</strong> <a href={website} target="_blank">{website}</a></p>
           <p className="tags">{tags.split(',').join(', ')}</p>
         </div>
@@ -51,6 +51,7 @@ const RestaurantDetails = ({ restaurantInfo, removeDetails }) => {
     <div className="restaurant-modal">
       <button
         className="closeButton"
+        data-testid="close-button"
         onClick={removeDetails}
       >
         <img src={closeButton} alt="close button" />

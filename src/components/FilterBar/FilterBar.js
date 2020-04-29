@@ -47,29 +47,7 @@ class FilterBar extends React.Component {
 
     let stateOptions = states.map(state => <option key={states.indexOf(state)} value={`${state}`}>{state}</option>);
     let genreOptions = genres.map(genre => <option key={genres.indexOf(genre)} value={`${genre}`}>{genre}</option>);
-    // <div className="toggle-filters">
-    //   <h3>Filters Display</h3>
-    //   <form>
-    //     <label htmlFor="enableStates">States:</label>
-    //     <input
-    //       id="enableStates"
-    //       type="radio"
-    //       name="statesFilterEnabled"
-    //       onChange={this.displayFilters}
-    //       onClick={this.displayFilters}
-    //       checked={statesFilterEnabled}
-    //     />
-    //     <label htmlFor="enableGenres">Genres:</label>
-    //     <input
-    //       id="enableGenres"
-    //       type="radio"
-    //       name="genreFilterEnabled"
-    //       onChange={this.displayFilters}
-    //       onClick={this.displayFilters}
-    //       checked={genreFilterEnabled}
-    //     />
-    //   </form>
-    // </div>
+
     return (
       <div className="filter-bar">
 
