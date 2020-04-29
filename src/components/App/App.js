@@ -31,10 +31,6 @@ class App extends React.Component {
     this.setState({ [target.name]: target.value })
   }
 
-  setSearchQuery = (searchTerm) => {
-    this.setState({ searchQuery: searchTerm });
-  }
-
   render() {
     return (
       <main>
@@ -47,7 +43,6 @@ class App extends React.Component {
           statesFilter={this.state.statesFilter}
           genreFilter={this.state.genreFilter}
           searchQuery={this.state.searchQuery}
-          setSearchQuery={this.setSearchQuery}
         />
       </main>
     );

@@ -1,13 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import RestaurantContainer from './RestaurantContainer';
+import FilterBar from './FilterBar';
 
-describe('RestaurantContainer Tests', () => {
-  let restaurantsData;
+describe('FilterBar Tests', () => {
+  let restaurantData;
+  let mockRender;
+  let mockFilterResults;
+  let mockSetSearchQuery;
 
   beforeEach(() => {
-    restaurantsData = [{
+    restaurantData = [{
         "id": "f223fdd0-4adc-423e-9747-980a66c256ca",
         "name": "Old Hickory Steakhouse",
         "address1": "201 Waterfront St",
@@ -39,29 +42,39 @@ describe('RestaurantContainer Tests', () => {
         "hours": "Open Daily 5:30 PM-9:00 PM",
         "attire": "business casual"
     }];
-  })
-
-  it('should render to the DOM', () => {
-    const { getByText, debug } = render(
-      <RestaurantContainer
-      restaurants={restaurantsData}
-      statesFilter="all"
-      genreFilter="all"
-      searchQuery=""
+    mockFilterResults = jest.fn();
+    mockRender = render(
+      <FilterBar
+        restaurants={restaurantData}
+        filterResults={mockFilterResults}
       />
     )
+  });
 
+  it('should render to the DOM', () => {
+    const { getByText, getByPlaceholderText, queryAllByText } = mockRender
     expect(getByText('State:')).toBeInTheDocument();
+    expect(queryAllByText('All')).toHaveLength(2);
     expect(getByText('Genre:')).toBeInTheDocument();
     expect(getByText('Search:')).toBeInTheDocument();
-    expect(getByText('Restaurants')).toBeInTheDocument();
-    expect(getByText('Old Hickory Steakhouse')).toBeInTheDocument();
-    expect(getByText('Oxon Hill, MD')).toBeInTheDocument();
-    expect(getByText('(301) 965-4000')).toBeInTheDocument();
-    expect(getByText('Steak, American, Contemporary, Seafood, Cafe')).toBeInTheDocument();
-    expect(getByText('Matsuhisa')).toBeInTheDocument();
-    expect(getByText('Aspen, CO')).toBeInTheDocument();
-    expect(getByText('(970) 544-6628')).toBeInTheDocument();
-    expect(getByText('Japanese, Sushi, Asian, Contemporary, Seafood')).toBeInTheDocument();
+    expect(getByPlaceholderText('Search...')).toBeInTheDocument();
+  });
+
+  it('should be able to filter by state', () => {
+    const { getByText, getByPlaceholderText, getByTestId } = mockRender
+    fireEvent.change(getByTestId('stateFilter'), { target: { value: 'CO' } })
+    expect(mockFilterResults).toHaveBeenCalledTimes(1)
+  });
+
+  it('should be able to filter by genre', () => {
+    const { getByText, getByPlaceholderText, getByTestId } = mockRender
+    fireEvent.change(getByTestId('genreFilter'), { target: { value: 'Seafood' } })
+    expect(mockFilterResults).toHaveBeenCalledTimes(1)
+  });
+
+  it('should be able to type into search bar', () => {
+    const { getByText, getByPlaceholderText, getByTestId } = mockRender
+    fireEvent.change(getByPlaceholderText('Search...'), { target: { value: 'chef' } })
+    expect(mockFilterResults).toHaveBeenCalledTimes(1)
   })
 })
