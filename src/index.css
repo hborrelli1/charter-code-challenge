@@ -23,3 +23,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media screen and (max-width:600px) {
+  .filters {
+    flex-direction:column;
+  }
+  .filters .form-group {
+    width:100%;
+    text-align:center;
+    margin-bottom:10px !important;
+  }
+
+  .restaurants-list table {
+    max-width:600px;
+  }
+  .restaurants-list table .phone {
+    min-width:unset;
+  }
+}
