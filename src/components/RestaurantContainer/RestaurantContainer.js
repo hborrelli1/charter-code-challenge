@@ -4,7 +4,7 @@ import Restaurant from '../Restaurant/Restaurant'
 import FilterBar from '../FilterBar/FilterBar'
 import './RestaurantContainer.css'
 
-const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFilter, setSearchQuery, searchQuery, setFiltersDisplay, genreFilterEnabled, statesFilterEnabled }) => {
+const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFilter, setSearchQuery, searchQuery }) => {
   let restaurantsDisplay;
   let searchRegex;
   let results = restaurants;
@@ -40,9 +40,6 @@ const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFi
         restaurants={restaurants}
         filterResults={filterResults}
         setSearchQuery={setSearchQuery}
-        setFiltersDisplay={setFiltersDisplay}
-        statesFilterEnabled={statesFilterEnabled}
-        genreFilterEnabled={genreFilterEnabled}
       />
       <div className="restaurants-list">
         <h2>Restaurants</h2>
