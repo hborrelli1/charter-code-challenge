@@ -20,3 +20,9 @@
 .filter-bar .filters .form-group label {
   margin-right:10px
 }
+
+.filter-bar .filters #search {
+  height:25px;
+  padding:5px;
+  font-size:.875rem;
+}
