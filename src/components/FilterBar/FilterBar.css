@@ -1,0 +1,22 @@
+.filter-bar {
+  padding:20px;
+  background-color:#f1f1f1;
+  margin-bottom:20px;
+}
+
+/* .filter-bar .toggle-filters, */
+.filter-bar .filters {
+  width:100%;
+  display:flex;
+  flex-flow:wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-bar .filters .form-group {
+  margin:0px 20px;
+}
+
+.filter-bar .filters .form-group label {
+  margin-right:10px
+}

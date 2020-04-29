@@ -9,7 +9,10 @@ class App extends React.Component {
     this.state = {
       restaurants: [],
       statesFilter: 'all',
-      genreFilter: 'all'
+      genreFilter: 'all',
+      searchQuery: '',
+      statesFilterEnabled: 'checked',
+      genreFilterEnabled: 'checked',
     }
   }
 
@@ -30,6 +33,18 @@ class App extends React.Component {
     this.setState({ [target.name]: target.value })
   }
 
+  setSearchQuery = (searchTerm) => {
+    this.setState({ searchQuery: searchTerm });
+  }
+
+  setFiltersDisplay = (target) => {
+    if (this.state[target.name] === 'checked') {
+      this.setState({ [target.name]: ' ' })
+    } else {
+      this.setState({ [target.name]: 'checked' })
+    }
+  }
+
   render() {
     return (
       <main>
@@ -41,6 +56,11 @@ class App extends React.Component {
           filterResults={this.filterResults}
           statesFilter={this.state.statesFilter}
           genreFilter={this.state.genreFilter}
+          searchQuery={this.state.searchQuery}
+          setSearchQuery={this.setSearchQuery}
+          setFiltersDisplay={this.setFiltersDisplay}
+          statesFilterEnabled={this.state.statesFilterEnabled}
+          genreFilterEnabled={this.state.genreFilterEnabled}
         />
       </main>
     );

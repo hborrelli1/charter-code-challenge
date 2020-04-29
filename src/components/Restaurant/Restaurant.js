@@ -10,7 +10,7 @@ const Restaurant = ({ info }) => {
     <tr>
       <td>{name}</td>
       <td>{city}, {state}</td>
-      <td><a href={`tel:${telephone}`}>{telephone}</a></td>
+      <td>{telephone}</td>
       <td>{genres}</td>
     </tr>
   )
