@@ -18,4 +18,10 @@ const Restaurant = ({ info, displayDetails }) => {
   )
 }
 
+Restaurant.propTypes = {
+  info: PropTypes.object,
+  displayDetails: PropTypes.func,
+  removeDetails: PropTypes.func,
+}
+
 export default Restaurant;

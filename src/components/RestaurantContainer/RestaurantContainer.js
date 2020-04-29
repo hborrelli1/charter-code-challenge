@@ -67,4 +67,13 @@ const RestaurantContainer = ({ restaurants, filterResults, statesFilter, genreFi
   )
 }
 
+RestaurantContainer.propTypes = {
+  restaurants: PropTypes.array,
+  filterResults: PropTypes.func,
+  statesFilter: PropTypes.string,
+  genreFilter: PropTypes.string,
+  searchQuery: PropTypes.string,
+  displayDetails: PropTypes.func
+}
+
 export default RestaurantContainer;

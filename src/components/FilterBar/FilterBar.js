@@ -18,15 +18,8 @@ class FilterBar extends React.Component {
     filterResults(event.target)
   }
 
-  displayFilters = (event) => {
-    event.preventDefault();
-    const { setFiltersDisplay } = this.props;
-    setFiltersDisplay(event.target)
-    console.log(event.target);
-  }
-
   render () {
-    const { restaurants, statesFilterEnabled, genreFilterEnabled } = this.props;
+    const { restaurants } = this.props;
     let states = restaurants.reduce((states, restaurant) => {
       if (!states.includes(restaurant.state)) {
         states.push(restaurant.state);
@@ -93,6 +86,11 @@ class FilterBar extends React.Component {
       </div>
     )
   }
+}
+
+FilterBar.propTypes = {
+  restaurants: PropTypes.array,
+  filterResults: PropTypes.func
 }
 
 export default FilterBar;

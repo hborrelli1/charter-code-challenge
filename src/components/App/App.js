@@ -4,7 +4,7 @@ import RestaurantDetails from '../RestaurantDetails/RestaurantDetails';
 import { apiFetchData } from '../../apiCalls/apiCalls';
 import './App.css';
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
