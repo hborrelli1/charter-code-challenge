@@ -81,6 +81,7 @@ class FilterBar extends React.Component {
               name="statesFilter"
               value={this.state.statesFilter}
               onChange={this.handleChange}
+              data-testid="stateFilter"
             >
               <option value="all">All</option>
               {stateOptions}
@@ -93,6 +94,7 @@ class FilterBar extends React.Component {
               name="genreFilter"
               value={this.state.genreFilter}
               onChange={this.handleChange}
+              data-testid="genreFilter"
             >
               <option value="all">All</option>
               {genreOptions}
@@ -105,6 +107,7 @@ class FilterBar extends React.Component {
               name="searchQuery"
               value={this.state.searchQuery}
               onChange={this.handleChange}
+              placeholder="Search..."
             />
 
           </div>
