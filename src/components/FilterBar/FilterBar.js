@@ -18,15 +18,8 @@ class FilterBar extends React.Component {
     filterResults(event.target)
   }
 
-  displayFilters = (event) => {
-    event.preventDefault();
-    const { setFiltersDisplay } = this.props;
-    setFiltersDisplay(event.target)
-    console.log(event.target);
-  }
-
   render () {
-    const { restaurants, statesFilterEnabled, genreFilterEnabled } = this.props;
+    const { restaurants } = this.props;
     let states = restaurants.reduce((states, restaurant) => {
       if (!states.includes(restaurant.state)) {
         states.push(restaurant.state);
@@ -45,12 +38,15 @@ class FilterBar extends React.Component {
       return genres;
     },[]).sort();
 
-    let stateOptions = states.map(state => <option key={states.indexOf(state)} value={`${state}`}>{state}</option>);
-    let genreOptions = genres.map(genre => <option key={genres.indexOf(genre)} value={`${genre}`}>{genre}</option>);
+    let stateOptions = states.map(state => (
+      <option key={states.indexOf(state)} value={`${state}`}>{state}</option>)
+    );
+    let genreOptions = genres.map(genre => (
+      <option key={genres.indexOf(genre)} value={`${genre}`}>{genre}</option>)
+    );
 
     return (
       <div className="filter-bar">
-
         <form className="filters">
           <div className="form-group">
             <label htmlFor="state">State:</label>
@@ -87,12 +83,16 @@ class FilterBar extends React.Component {
               onChange={this.handleChange}
               placeholder="Search..."
             />
-
           </div>
         </form>
       </div>
     )
   }
+}
+
+FilterBar.propTypes = {
+  restaurants: PropTypes.array,
+  filterResults: PropTypes.func
 }
 
 export default FilterBar;

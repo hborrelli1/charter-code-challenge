@@ -6,7 +6,6 @@ import './RestaurantDetails.css';
 const RestaurantDetails = ({ restaurantInfo, removeDetails }) => {
   let modalContent;
   const {
-    id,
     name,
     address1,
     city,
@@ -37,8 +36,14 @@ const RestaurantDetails = ({ restaurantInfo, removeDetails }) => {
           {city}, {state} | {zip}<br/>
           </address>
           <h3>Contact:</h3>
-          <p><strong>Telephone:</strong> <a href={"tel:" + telephone}>{telephone}</a></p>
-          <p><strong>Webiste:</strong> <a href={website} target="_blank">{website}</a></p>
+          <p>
+            <strong>Telephone:</strong>
+            <a href={"tel:" + telephone}>{telephone}</a>
+          </p>
+          <p>
+            <strong>Webiste:</strong>
+            <a href={website} target="_blank" rel="noopener noreferrer">{website}</a>
+          </p>
           <p className="tags">{tags.split(',').join(', ')}</p>
         </div>
       </div>
@@ -59,6 +64,11 @@ const RestaurantDetails = ({ restaurantInfo, removeDetails }) => {
       {modalContent}
     </div>
   )
+}
+
+RestaurantDetails.propTypes = {
+  restaurantInfo: PropTypes.object,
+  removeDetails: PropTypes.func
 }
 
 export default RestaurantDetails;

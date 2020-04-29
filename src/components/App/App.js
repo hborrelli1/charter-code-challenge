@@ -4,7 +4,7 @@ import RestaurantDetails from '../RestaurantDetails/RestaurantDetails';
 import { apiFetchData } from '../../apiCalls/apiCalls';
 import './App.css';
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -44,7 +44,9 @@ class App extends React.Component {
   render() {
     const { showDetails, restaurants } = this.state;
     const restaurantDetailsClass = showDetails ? 'js-details-open' : '';
-    const restaurantDetailsInfo = showDetails ? restaurants.find(rest => rest.id === showDetails) : {};
+    const restaurantDetailsInfo = showDetails
+      ? restaurants.find(rest => rest.id === showDetails)
+      : {};
     const bodyClass = showDetails ? 'noscroll' : ''
 
     return (

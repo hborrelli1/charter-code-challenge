@@ -1,16 +1,15 @@
 .filter-bar {
-  padding:20px;
   background-color:#f1f1f1;
   margin-bottom:20px;
+  padding:20px;
 }
 
-/* .filter-bar .toggle-filters, */
 .filter-bar .filters {
-  width:100%;
+  align-items: center;
   display:flex;
   flex-flow:wrap;
   justify-content: center;
-  align-items: center;
+  width:100%;
 }
 
 .filter-bar .filters .form-group {
@@ -22,7 +21,7 @@
 }
 
 .filter-bar .filters #search {
+  font-size:.875rem;
   height:25px;
   padding:5px;
-  font-size:.875rem;
 }
