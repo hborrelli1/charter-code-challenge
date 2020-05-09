@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Restaurant from '../Restaurant/Restaurant'
 import FilterBar from '../FilterBar/FilterBar'
@@ -16,6 +16,7 @@ const RestaurantContainer = ({
   let restaurantsDisplay;
   let searchRegex;
   let results = restaurants;
+  const [currentPage, setPage] = useState(0);
 
   if (statesFilter !== 'all') {
     results = results.filter(restaurant => restaurant.state === statesFilter);
@@ -42,8 +43,24 @@ const RestaurantContainer = ({
     return (nameA < nameB) ? - 1 : (nameA > nameB) ? 1 : 0;
   });
 
-  results.length
-    ? restaurantsDisplay = restaurantsSorted.map(restInfo => (
+  // Instead of array of results, break results into array 10 results each\
+  let quantity = 10;
+  let paginatedResults = (restaurantsSorted) => {
+    let groupedResults = [];
+    let group;
+    while (restaurantsSorted.length > 0) {
+      group = restaurantsSorted.splice(0, 10);
+      groupedResults.push(group);
+    }
+    return groupedResults;
+  };
+
+  console.log(paginatedResults);
+  // let pageButtons = paginatedResults.map((page, index) => (<button key={index}>{index}</button>));
+
+  // console.log(restaurantsSorted);
+  paginatedResults[0]
+    ? restaurantsDisplay = paginatedResults[currentPage].map(restInfo => (
         <Restaurant
           key={restInfo.id}
           info={restInfo}
@@ -74,6 +91,9 @@ const RestaurantContainer = ({
             {restaurantsDisplay}
           </tbody>
         </table>
+        <button onClick={setPage(currentPage + 1)}>L</button>
+        
+        <button onClick={setPage(currentPage - 1)}>R</button>
       </div>
     </div>
   )
