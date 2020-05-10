@@ -54,9 +54,33 @@ const RestaurantContainer = ({
   for (let i = 1; i <= Math.ceil(restaurantsSorted.length / quantityPerPage); i++) {
     pageNumbers.push(i);
   }
-  console.log(pageNumbers);
+
+  const validateButton = (button) => {
+    console.log(pageNumbers.length);
+    //  If the first index of pageNumbers equals currentPage, disable previous
+    // Button.
+    // If the last index of pageNumbers equals currentpage, disable next button.
+
+    // if currentPage === pageNumbers first or last
+    if (currentPage === pageNumbers[0] && button === 'prev') {
+      console.log(true);
+      return true;
+    } else if (currentPage === pageNumbers.length && button === 'next') {
+      console.log(true);
+      return true;
+    }
+
+    if (currentPage === pageNumbers.length && button === 'next') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validateButton();
+
   const pageNumbersDisplay = pageNumbers.map(num => (
     <button
+      className={currentPage === num ? 'current-page' : ''}
       key={num}
       id={num}
       onClick={selectPage}
@@ -98,18 +122,26 @@ const RestaurantContainer = ({
             {restaurantsDisplay}
           </tbody>
         </table>
-        <div className="pagination-control">
-          <button onClick={() => changePage('prev')}>L</button>
-          {pageNumbersDisplay}
-          <button onClick={() => changePage('next')}>R</button>
-        </div>
+        {results.length > 10 &&
+          <div className="pagination-control">
+            <button
+              onClick={() => changePage('prev')}
+              disabled={validateButton('prev')}
+            >
+              prev
+            </button>
+            {pageNumbersDisplay}
+            <button
+              onClick={() => changePage('next')}
+              disabled={validateButton('next')}
+            >
+              next
+            </button>
+          </div>}
       </div>
     </div>
   )
 }
-// <button onClick={() => setPage(currentPage + 1)}>L</button>
-// {pageButtons}
-// <button onClick={() => setPage(currentPage - 1)}>R</button>
 
 RestaurantContainer.propTypes = {
   restaurants: PropTypes.array,
