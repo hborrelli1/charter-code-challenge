@@ -134,7 +134,11 @@ RestaurantContainer.propTypes = {
   statesFilter: PropTypes.string,
   genreFilter: PropTypes.string,
   searchQuery: PropTypes.string,
-  displayDetails: PropTypes.func
+  displayDetails: PropTypes.func,
+  currentPage: PropTypes.number,
+  quantityPerPage: PropTypes.number,
+  selectPage: PropTypes.func,
+  changePage: PropTypes.func
 }
 
 export default RestaurantContainer;
