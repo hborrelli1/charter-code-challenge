@@ -2,6 +2,9 @@
 **Position:** Full Stack (ReactJS/Gatsby) @ Charter   
 **Completed by:** Harry Borrelli
 
+**Deployed App**  
+[Charter Code Challenge App](https://charter-code-challenge.herokuapp.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
