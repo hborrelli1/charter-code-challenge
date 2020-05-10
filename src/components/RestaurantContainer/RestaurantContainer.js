@@ -11,11 +11,15 @@ const RestaurantContainer = ({
     genreFilter,
     searchQuery,
     displayDetails,
-    removeDetails
+    removeDetails,
+    currentPage,
+    quantityPerPage,
+    selectPage,
+    changePage
   }) => {
-  let restaurantsDisplay;
   let searchRegex;
   let results = restaurants;
+  let restaurantsDisplay;
 
   if (statesFilter !== 'all') {
     results = results.filter(restaurant => restaurant.state === statesFilter);
@@ -42,26 +46,28 @@ const RestaurantContainer = ({
     return (nameA < nameB) ? - 1 : (nameA > nameB) ? 1 : 0;
   });
 
-  // Instead of array of results, break results into array 10 results each\
-  // current page starts at 1
-  const [currentPage, setPage] = useState(0);
-  let quantity = 10;
+  const indexOfLastRest = currentPage * quantityPerPage;
+  const indexOfFirstRest = indexOfLastRest - quantityPerPage;
+  const currentRestaurants = restaurantsSorted.slice(indexOfFirstRest, indexOfLastRest);
 
-  let paginatedResults = [];
-  let group;
-
-  while (restaurantsSorted.length > 0) {
-    group = restaurantsSorted.splice(0, 10);
-    paginatedResults.push(group);
+  let pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(restaurantsSorted.length / quantityPerPage); i++) {
+    pageNumbers.push(i);
   }
-
-  console.log(paginatedResults);
-  console.log(paginatedResults[0]);
-  let pageButtons = paginatedResults.map((page, index) => (<button key={index}>{index}</button>));
+  console.log(pageNumbers);
+  const pageNumbersDisplay = pageNumbers.map(num => (
+    <button
+      key={num}
+      id={num}
+      onClick={selectPage}
+    >
+    {num}
+    </button>
+  ))
 
   // console.log(restaurantsSorted);
-  paginatedResults.length
-    ? restaurantsDisplay = paginatedResults[currentPage].map(restInfo => (
+  currentRestaurants.length
+    ? restaurantsDisplay = currentRestaurants.map(restInfo => (
         <Restaurant
           key={restInfo.id}
           info={restInfo}
@@ -93,14 +99,17 @@ const RestaurantContainer = ({
           </tbody>
         </table>
         <div className="pagination-control">
-          <button onClick={() => setPage(currentPage + 1)}>L</button>
-          {pageButtons}
-          <button onClick={() => setPage(currentPage - 1)}>R</button>
+          <button onClick={() => changePage('prev')}>L</button>
+          {pageNumbersDisplay}
+          <button onClick={() => changePage('next')}>R</button>
         </div>
       </div>
     </div>
   )
 }
+// <button onClick={() => setPage(currentPage + 1)}>L</button>
+// {pageButtons}
+// <button onClick={() => setPage(currentPage - 1)}>R</button>
 
 RestaurantContainer.propTypes = {
   restaurants: PropTypes.array,
