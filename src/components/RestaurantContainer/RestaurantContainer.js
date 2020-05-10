@@ -107,7 +107,7 @@ const RestaurantContainer = ({
             {restaurantsDisplay}
           </tbody>
         </table>
-        {results.length > 10 &&
+        {results.length > quantityPerPage &&
           <div className="pagination-control">
             <button
               onClick={() => changePage('prev')}
