@@ -12,7 +12,9 @@ class App extends Component {
       statesFilter: 'all',
       genreFilter: 'all',
       searchQuery: '',
-      showDetails: ''
+      showDetails: '',
+      currentPage: 1,
+      quantityPerPage: 10
     }
   }
 
@@ -41,6 +43,18 @@ class App extends Component {
     this.setState({ showDetails: '' });
   }
 
+  selectPage = (event) => {
+    this.setState({ currentPage: Number(event.target.id) });
+  }
+
+  changePage = (direction) => {
+    if (direction === 'next') {
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    } else {
+      this.setState({ currentPage: this.state.currentPage - 1 });
+    }
+  }
+
   render() {
     const { showDetails, restaurants } = this.state;
     const restaurantDetailsClass = showDetails ? 'js-details-open' : '';
@@ -61,6 +75,10 @@ class App extends Component {
           genreFilter={this.state.genreFilter}
           searchQuery={this.state.searchQuery}
           displayDetails={this.displayDetails}
+          currentPage={this.state.currentPage}
+          quantityPerPage={this.state.quantityPerPage}
+          selectPage={this.selectPage}
+          changePage={this.changePage}
         />
         <div className={"restaurant-details " + restaurantDetailsClass}>
           <RestaurantDetails

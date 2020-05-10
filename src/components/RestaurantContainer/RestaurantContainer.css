@@ -33,3 +33,20 @@ tbody tr:hover {
 .no-results {
   text-align:center;
 }
+
+.pagination-control {
+  text-align: center;
+}
+
+.pagination-control button {
+  padding:5px 10px;
+  font-size:1rem;
+}
+
+.pagination-control button:hover {
+  cursor:pointer;
+}
+
+.pagination-control button.current-page {
+  border: 1px solid #000;
+}
