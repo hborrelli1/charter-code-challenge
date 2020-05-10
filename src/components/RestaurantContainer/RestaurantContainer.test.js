@@ -209,6 +209,10 @@ describe('RestaurantContainer Tests', () => {
     expect(getByText('Aspen, CO')).toBeInTheDocument();
     expect(getByText('(970) 544-6628')).toBeInTheDocument();
     expect(getByText('Japanese, Sushi, Asian, Contemporary, Seafood')).toBeInTheDocument();
+    expect(getByText('prev')).toBeInTheDocument();
+    expect(getByText('next')).toBeInTheDocument();
+    expect(getByText('1')).toBeInTheDocument();
+    expect(getByText('2')).toBeInTheDocument();
   })
 
   it('should be able to change pages', () => {

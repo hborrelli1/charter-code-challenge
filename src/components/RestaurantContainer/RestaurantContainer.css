@@ -50,3 +50,7 @@ tbody tr:hover {
 .pagination-control button.current-page {
   border: 1px solid #000;
 }
+
+.pagination-control button:disabled {
+  cursor:no-drop;
+}
