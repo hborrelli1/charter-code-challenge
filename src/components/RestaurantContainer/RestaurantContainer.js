@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Restaurant from '../Restaurant/Restaurant'
 import FilterBar from '../FilterBar/FilterBar'
@@ -56,24 +56,10 @@ const RestaurantContainer = ({
   }
 
   const validateButton = (button) => {
-    console.log(pageNumbers.length);
-    //  If the first index of pageNumbers equals currentPage, disable previous
-    // Button.
-    // If the last index of pageNumbers equals currentpage, disable next button.
-
-    // if currentPage === pageNumbers first or last
     if (currentPage === pageNumbers[0] && button === 'prev') {
-      console.log(true);
       return true;
     } else if (currentPage === pageNumbers.length && button === 'next') {
-      console.log(true);
       return true;
-    }
-
-    if (currentPage === pageNumbers.length && button === 'next') {
-      return true;
-    } else {
-      return false;
     }
   }
   validateButton();
@@ -89,7 +75,6 @@ const RestaurantContainer = ({
     </button>
   ))
 
-  // console.log(restaurantsSorted);
   currentRestaurants.length
     ? restaurantsDisplay = currentRestaurants.map(restInfo => (
         <Restaurant
