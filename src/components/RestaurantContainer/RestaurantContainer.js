@@ -39,7 +39,6 @@ const RestaurantContainer = ({
             );
     })
   }
-  
 
   let restaurantsSorted = results.sort((a, b) => {
     let nameA = a.name.toUpperCase();
