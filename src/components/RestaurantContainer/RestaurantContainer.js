@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Restaurant from '../Restaurant/Restaurant'
 import FilterBar from '../FilterBar/FilterBar'
@@ -16,7 +16,6 @@ const RestaurantContainer = ({
   let restaurantsDisplay;
   let searchRegex;
   let results = restaurants;
-  const [currentPage, setPage] = useState(0);
 
   if (statesFilter !== 'all') {
     results = results.filter(restaurant => restaurant.state === statesFilter);
@@ -44,22 +43,24 @@ const RestaurantContainer = ({
   });
 
   // Instead of array of results, break results into array 10 results each\
+  // current page starts at 1
+  const [currentPage, setPage] = useState(0);
   let quantity = 10;
-  let paginatedResults = (restaurantsSorted) => {
-    let groupedResults = [];
-    let group;
-    while (restaurantsSorted.length > 0) {
-      group = restaurantsSorted.splice(0, 10);
-      groupedResults.push(group);
-    }
-    return groupedResults;
-  };
+
+  let paginatedResults = [];
+  let group;
+
+  while (restaurantsSorted.length > 0) {
+    group = restaurantsSorted.splice(0, 10);
+    paginatedResults.push(group);
+  }
 
   console.log(paginatedResults);
-  // let pageButtons = paginatedResults.map((page, index) => (<button key={index}>{index}</button>));
+  console.log(paginatedResults[0]);
+  let pageButtons = paginatedResults.map((page, index) => (<button key={index}>{index}</button>));
 
   // console.log(restaurantsSorted);
-  paginatedResults[0]
+  paginatedResults.length
     ? restaurantsDisplay = paginatedResults[currentPage].map(restInfo => (
         <Restaurant
           key={restInfo.id}
@@ -91,9 +92,11 @@ const RestaurantContainer = ({
             {restaurantsDisplay}
           </tbody>
         </table>
-        <button onClick={setPage(currentPage + 1)}>L</button>
-        
-        <button onClick={setPage(currentPage - 1)}>R</button>
+        <div className="pagination-control">
+          <button onClick={() => setPage(currentPage + 1)}>L</button>
+          {pageButtons}
+          <button onClick={() => setPage(currentPage - 1)}>R</button>
+        </div>
       </div>
     </div>
   )

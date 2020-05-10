@@ -33,3 +33,7 @@ tbody tr:hover {
 .no-results {
   text-align:center;
 }
+
+.pagination-control {
+  text-align: center;
+}
